@@ -1,8 +1,8 @@
-# Best case: 
-# Worst case: 
-# Average case: 
+# Best case: array is sorted - O(n)
+# Worst case: O(n2)
+# Average case: O(n2)
 # Time complexity: O(n2)
-# Space complexity: 
+# Space complexity: O(1)
 
 from read_sample import ReadSampleData
 
@@ -18,16 +18,13 @@ def SelectionSortAsc(arr):
 def SelectionSortDesc(arr):
     i = 0
     while i <= len(arr) - 1:
-        minPos = i
+        maxPos = i
         for j in range(i+1, len(arr), +1):
-            if arr[j] > arr[minPos]:
-                arr[j], arr[minPos] = arr[minPos], arr[j]
+            if arr[j] > arr[maxPos]:
+                arr[j], arr[maxPos] = arr[maxPos], arr[j]
         i += 1
-
-def SelectionSortOptimizeAsc(arr):
-    
 
 if __name__ == "__main__":
     arr = ReadSampleData()
-    SelectionSortDesc(arr)
+    SelectionSortAsc(arr)
     print(arr)
