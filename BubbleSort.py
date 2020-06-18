@@ -11,6 +11,7 @@
 # Worst case: O(n2)
 # Average case: O(n2)
 # Space complexity: O(1) - array includes 1 element only
+import tracemalloc
 from read_sample import ReadSampleData
 
 
@@ -43,6 +44,10 @@ def BubbleSortOptimize(arr):
         i -= 1
 
 if __name__ == "__main__":
+    tracemalloc.start()
     arr = ReadSampleData()
-    BubbleSortOptimize(arr)
+    BubbleSortAsc(arr)
+    current, peak = tracemalloc.get_traced_memory()
+    print(f"Current memory usage is {current / 10**6}MB; Peak was {peak / 10**6}MB")
+    tracemalloc.stop()
     print(arr)
