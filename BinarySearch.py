@@ -1,8 +1,9 @@
-# Best case:
+# Best case: 
 # Worst case:
 # Average case:
-# Time complexity:
+# Time complexity: O(log2(n))
 # Space complexity:
+import tracemalloc
 from read_sample import ReadSampleData
 
 def BinarySearch(arr, k):
@@ -22,8 +23,14 @@ def BinarySearch(arr, k):
     return -1
 
 if __name__ == "__main__":
+    tracemalloc.start()
     arr = ReadSampleData()
-    k = 20
-    print(arr)
+    k = 917
     position = BinarySearch(arr, k)
-    print("Position: " + str(position))
+    # current, peak = tracemalloc.get_traced_memory()
+    # print(f"Current memory usage is {current / 10**6}MB; Peak was {peak / 10**6}MB")
+    # tracemalloc.stop()
+    if position == -1:
+        print("Not found")
+    else:
+        print("Position: " + str(position))
