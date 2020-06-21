@@ -28,6 +28,7 @@ class LinkedList(object):
                 current = current.next
             # Add new element next to last element
             current.next = newElement
+            current.next.next = None
         else:
             self.head = newElement
     
@@ -68,6 +69,22 @@ class LinkedList(object):
                 current = current.next
                 count += 1
             return None
+
+    def getMiddleElement(self):
+        count = 0
+        temp = 0
+        if self.head:
+            current = self.head
+            while current.next:
+                current = current.next
+                count += 1
+        if self.head:
+            current = self.head
+            while current.next:
+                if temp == count//2:
+                    return current
+                current = current.next
+                temp += 1
     
     def traverse(self):
         # Check if Linked list already had HEAD
@@ -103,4 +120,6 @@ if __name__ == "__main__":
     newPos = 2
     llist.insertWithPosition(newElement_Pos, newPos)
     llist.traverse()
+    middleElement = llist.getMiddleElement()
+    print(middleElement.value)
     # arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
