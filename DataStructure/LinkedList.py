@@ -85,6 +85,24 @@ class LinkedList(object):
                     return current
                 current = current.next
                 temp += 1
+
+    def getElementWithPosition(self, position):
+        count = 0
+        if self.head:
+            current = self.head
+            while current.next:
+                if count == position:
+                    return current
+                count += 1
+                current = current.next
+        return None
+
+    def deleteAll(self):
+        if self.head:
+            current = self.head
+            while current.next:
+                current.value = None
+                current = current.next
     
     def traverse(self):
         # Check if Linked list already had HEAD
@@ -101,7 +119,10 @@ class LinkedList(object):
                 else:
                     print(str(current.value), end='')
                 current = current.next
-            print(str(current.value))
+            if current.value == None:
+                print("NULL")
+            else:
+                print(str(current.value))
 
 
 if __name__ == "__main__":
@@ -109,11 +130,13 @@ if __name__ == "__main__":
     node_1 = Element(2)
     node_2 = Element(3)
     node_3 = Element(4)
+    node_4 = Element(None)
     llist = LinkedList(head=head)
     newHead = Element(0)
     llist.insertHead(newHead)
     llist.insertHead(node_2)
     llist.insertHead(node_3)
+    llist.insertTail(node_4)
     llist.traverse()
     position = 2
     newElement_Pos = Element(10)
@@ -121,5 +144,10 @@ if __name__ == "__main__":
     llist.insertWithPosition(newElement_Pos, newPos)
     llist.traverse()
     middleElement = llist.getMiddleElement()
-    print(middleElement.value)
+    print("Middle element: " + str(middleElement.value))
+    pospos = 4
+    elementPos = llist.getElementWithPosition(pospos)
+    print("Element with position " + str(pospos) + ": " + str(elementPos.value))
+    llist.deleteAll()
+    llist.traverse()
     # arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
