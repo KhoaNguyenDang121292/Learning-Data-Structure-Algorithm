@@ -42,14 +42,17 @@ class LinkedList(object):
 
     def insertWithPosition(self, newElement, position):
         count = 0
+        prevElement = None
         if self.head:
             current = self.head
             while current.next:
+                if count == position - 1:
+                    prevElement = current
                 if count == position:
+                    prevElement.next = newElement
                     temp = current
                     current = newElement
                     current.next = temp
-                    break
                 current = current.next
                 count += 1
         else:
