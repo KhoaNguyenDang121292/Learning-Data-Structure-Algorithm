@@ -104,6 +104,16 @@ class LinkedList(object):
                 current.value = None
                 current = current.next
     
+    def countElementValue(self, element):
+        count = 0
+        if self.head:
+            current = self.head
+            while current.next:
+                if element.value == current.value:
+                    count += 1
+                current = current.next
+        return count
+
     def traverse(self):
         # Check if Linked list already had HEAD
         if self.head:
@@ -148,6 +158,9 @@ if __name__ == "__main__":
     pospos = 4
     elementPos = llist.getElementWithPosition(pospos)
     print("Element with position " + str(pospos) + ": " + str(elementPos.value))
-    llist.deleteAll()
-    llist.traverse()
+    # llist.deleteAll()
+    # llist.traverse()
+    elementToCount = Element(1)
+    countElement = llist.countElementValue(elementToCount)
+    print("Count element " + str(elementToCount.value) + ": " + str(countElement))
     # arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
