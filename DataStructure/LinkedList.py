@@ -18,6 +18,17 @@ class Element(object):
 class LinkedList(object):
     def __init__(self, head=None):
         self.head = head
+
+    def convertFromArray(self, arr):
+        if len(arr) < 0:
+            return
+        else:
+            self.head = Element(arr[0])
+            current = self.head
+            for i in range(1, len(arr), +1):
+                current.next = Element(arr[i])
+                current = current.next
+            current.next = None
     
     def insertTail(self, newElement):
         # Check if linkedlist already had HEAD
@@ -85,6 +96,16 @@ class LinkedList(object):
                     return current
                 current = current.next
                 temp += 1
+        # if self.head:
+        #     slowPointer = self.head
+        #     fastPointer = self.head
+        #     while fastPointer and fastPointer.next:
+        #         try:
+        #             slowPointer = slowPointer.next
+        #             fastPointer = fastPointer.next.next
+        #         except Exception as ex:
+        #             break
+        # return slowPointer
 
     def getElementWithPosition(self, position):
         count = 0
@@ -125,6 +146,29 @@ class LinkedList(object):
                 prevElement = current
                 current = nextElement
             self.head = prevElement
+    
+    def detectLoop(self):
+        # Tracing with hash O(n)
+        # traceSet = set()
+        # if self.head:
+        #     current = self.head
+        #     while current.next:
+        #         if current in traceSet:
+        #             return 1
+        #         traceSet.add(current)
+        #         current = current.next
+        # return -1
+
+        # Floyd’s Cycle-Finding Algorithm
+        if self.head:
+            slowPointer = self.head
+            fastPointer = self.head
+            while slowPointer and fastPointer and fastPointer.next:
+                slowPointer = slowPointer.next
+                fastPointer = fastPointer.next.next
+                if slowPointer == fastPointer:
+                    return 1
+        return -1
 
     def traverse(self):
         # Check if Linked list already had HEAD
@@ -178,4 +222,6 @@ if __name__ == "__main__":
     llist.reverse()
     print("After reverse linked list: ")
     llist.traverse()
+    detectLoop = llist.detectLoop()
+    print("Detect loop: " + str("In loop" if detectLoop == 1 else "Not in loop"))
     # arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
