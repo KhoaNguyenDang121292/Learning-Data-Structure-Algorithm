@@ -115,13 +115,16 @@ class LinkedList(object):
         return count
 
     def reverse(self):
+        # Set previous element as None
         prevElement = Element(None)
         if self.head:
             current = self.head
-            while current.next:
+            while current.value is not None:
+                nextElement = current.next
                 current.next = prevElement
                 prevElement = current
-                current = current.next
+                current = nextElement
+            self.head = prevElement
 
     def traverse(self):
         # Check if Linked list already had HEAD
@@ -173,5 +176,6 @@ if __name__ == "__main__":
     countElement = llist.countElementValue(elementToCount)
     print("Count element " + str(elementToCount.value) + ": " + str(countElement))
     llist.reverse()
+    print("After reverse linked list: ")
     llist.traverse()
     # arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
