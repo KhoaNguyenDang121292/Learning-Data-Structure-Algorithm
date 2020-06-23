@@ -1,12 +1,13 @@
 """
 KEY CONCEPT:
     - Use Element + Linked list data structure for Stack
-    - Last in First out
+    - Last in First out (LIFO) or First in Last out (FILO)
     Activities in Stack:
         + Push. (Insert)
         + Pop. (Remove)
-        + Peek (Get top element of stack)
-        + isEmpty (Check stack is empty or not)
+        + Peek (Get top element of Stack)
+        + isEmpty (Check Stack is empty or not)
+        + Size (Get size of Stack)
 """
 from LinkedList import Element
 from LinkedList import LinkedList
@@ -17,6 +18,7 @@ class Stack(object):
         self.stack = LinkedList(head=top)
     
     # Push in stack <=> Insert head in Linked list
+    # Time complexity: O(1)
     def push(self, newElement):
         if self.stack.head:
             temp = self.stack.head
@@ -26,13 +28,38 @@ class Stack(object):
             self.stack.head = newElement
     
     # Pop from stack <=> Remove head in Linked list
+    # Time complexity: O(1)
     def pop(self):
         if self.stack.head:
             self.stack.head = self.stack.head.next
         else:
-            self.stack.head = None    
+            self.stack.head = None
+
+    # Peek get top of Stack
+    # Time complexity: O(1)
+    def peek(self):
+        return self.stack.head
+
+    # Check stack empty
+    # Time complexity: O(1)
+    def isEmpty(self):
+        if self.stack.head:
+            return -1
+        return 1
+
+    # Get size of Stack
+    # Time complexity: O(n)
+    def size(self):
+        count = 1
+        if self.stack.head:
+            current = self.stack.head
+            while current.next:
+                count += 1
+                current = current.next
+        return count
 
     # Print stack
+    # Time complexity: O(n)
     def print(self):
         if self.stack.head:
             current = self.stack.head
@@ -65,3 +92,8 @@ if __name__ == "__main__":
     print("")
     stack.pop()
     stack.print()
+    print("")
+    print("Head of Stack: " + str(stack.peek().value))
+    isEmpty = "no" if stack.isEmpty() == -1 else "yes"
+    print("Stack is empty: " + isEmpty)
+    print("Size of Stack: " + str(stack.size()))
