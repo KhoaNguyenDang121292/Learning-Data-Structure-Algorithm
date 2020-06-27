@@ -19,6 +19,12 @@
         Find GCD: Greatest common divisor
         TIME COMPLEXITY: O(n)
         Auxiliary Space: O(1)
+
+    SOLUTION 4:
+        Block swap algorithm (Cache friendly more than Juggling)
+        Find GCD: Greatest common divisor
+        TIME COMPLEXITY: O(n)
+        Auxiliary Space: O(1)
 """
 import sys
 sys.path.append("D:/DSaAlgo")
@@ -57,11 +63,36 @@ def jugglingRotate(arr, d, n):
             if k >= n:
                 k = k - n
             if k == i:
-                print("Zo")
                 break
             arr[j] = arr[k]
             j = k
         arr[j] = temp
+
+def blockSwap(arr, fi, si, d):
+    for i in range(0, d, +1):
+        arr[fi + i], arr[si + i] = arr[si + i], arr[fi + i]
+
+def blockSwapRotate(arr, d, n):
+    if d == 0 or d == n:  
+        return
+    i = d
+    j = n - d
+    while i != j:
+        if i < j: # A is shorter
+            blockSwap(arr, d - i, d + j - i, i)
+            j -= i
+        else: # B is shorter
+            blockSwap(arr, d - i, d, j)
+            i -= j
+    blockSwap(arr, d - i, d, i)
+
+def cycleRotateByOne(arr, n):
+    temp = arr[n-1]
+    print(temp)
+    for i in range(n-1, 0, -1):
+        arr[i] = arr[i-1]
+        i += 1
+    arr[0] = temp
 
 if __name__ == "__main__":
     arr = ReadSampleData()
@@ -71,5 +102,8 @@ if __name__ == "__main__":
     print("Aray length: " + str(n))
     # leftRotate(arr, d, n)
     # print("Array after left rotated: " + str(arr))
-    jugglingRotate(arr, d, n)
-    print("Array after rotated: " + str(arr))
+    # jugglingRotate(arr, d, n)
+    # print("Array after rotated: " + str(arr))
+    # blockSwapRotate(arr, d, n)
+    cycleRotateByOne(arr, len(arr))
+    print(arr)
