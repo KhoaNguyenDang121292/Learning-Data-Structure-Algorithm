@@ -1,4 +1,5 @@
 """
+    TUTORIAL: https://www.geeksforgeeks.org/array-data-structure/
     KEY CONCEPT:
     SOLUTION 1:
         Using temp array
@@ -88,22 +89,21 @@ def blockSwapRotate(arr, d, n):
 
 def cycleRotateByOne(arr, n):
     temp = arr[n-1]
-    print(temp)
     for i in range(n-1, 0, -1):
         arr[i] = arr[i-1]
         i += 1
     arr[0] = temp
 
 if __name__ == "__main__":
-    arr = ReadSampleData()
-    print("Array before rotated: " + str(arr))
-    d = 5
-    n = len(arr)
-    print("Aray length: " + str(n))
-    # leftRotate(arr, d, n)
-    # print("Array after left rotated: " + str(arr))
-    # jugglingRotate(arr, d, n)
-    # print("Array after rotated: " + str(arr))
-    # blockSwapRotate(arr, d, n)
-    cycleRotateByOne(arr, len(arr))
-    print(arr)
+    # arr = ReadSampleData()
+    # print("Array before rotated: " + str(arr))
+    # d = 5
+    # n = len(arr)
+    # print("Aray length: " + str(n))
+    # # leftRotate(arr, d, n)
+    # # print("Array after left rotated: " + str(arr))
+    # # jugglingRotate(arr, d, n)
+    # # print("Array after rotated: " + str(arr))
+    # # blockSwapRotate(arr, d, n)
+    # cycleRotateByOne(arr, len(arr))
+    # print(arr)
